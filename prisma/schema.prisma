@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model author {
+  id     Int     @id(map: "author_pk") @default(autoincrement())
+  name   String? @db.VarChar
+  gender gender?
+  book   book[]
+}
+
+model book {
+  id        Int      @id(map: "book_pk") @default(autoincrement())
+  title     String?  @db.VarChar
+  in_stock  Boolean? @default(false)
+  author_id Int
+  author    author   @relation(fields: [author_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "book_fk")
+
+  @@index([in_stock])
+  @@index([title])
+}
+
+enum gender {
+  Male
+  Female
+}

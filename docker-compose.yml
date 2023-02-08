@@ -1,0 +1,20 @@
+name: gql-server-demo
+services:
+  graphql:
+    build: .
+    container_name: gql-demo
+    ports:
+      - 4000:4000
+    restart: unless-stopped
+    sysctls:
+      net.ipv6.conf.all.disable_ipv6: 0
+      net.ipv6.conf.default.disable_ipv6: 0
+    command: "yarn start:local"
+    volumes:
+      - ./prisma:/usr/app/prisma:ro
+      - ./src:/usr/app/src:ro
+
+networks:
+  default:
+    external: true
+    name: docker-main-net
