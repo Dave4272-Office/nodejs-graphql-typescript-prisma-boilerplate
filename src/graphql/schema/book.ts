@@ -8,7 +8,7 @@ import {
 } from "graphql";
 import { authorSchema } from "./author";
 
-export const bookSchema = new GraphQLObjectType({
+export const bookSchema: GraphQLObjectType = new GraphQLObjectType({
   name: "Book",
   description: "Represents a book",
   fields: {
@@ -31,7 +31,7 @@ export const bookSchema = new GraphQLObjectType({
   },
 });
 
-export const bookQuery = new GraphQLObjectType({
+export const bookQuery: GraphQLObjectType = new GraphQLObjectType({
   name: "Query",
   fields: {
     books: {

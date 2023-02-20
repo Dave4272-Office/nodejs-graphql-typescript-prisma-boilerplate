@@ -1,13 +1,19 @@
 import { mergeTypeDefs } from "@graphql-tools/merge";
-import { GraphQLObjectType, GraphQLSchema, parse, printSchema } from "graphql";
+import {
+  DocumentNode,
+  GraphQLObjectType,
+  GraphQLSchema,
+  parse,
+  printSchema,
+} from "graphql";
 import { authorMutation, authorQuery, authorSchema } from "./author";
 import { bookQuery, bookSchema } from "./book";
 
-const codeToSchema = (params: GraphQLObjectType[]) => {
+function codeToSchema(params: GraphQLObjectType[]): DocumentNode {
   return parse(printSchema(new GraphQLSchema({ types: params })));
-};
+}
 
-export const schema = mergeTypeDefs([
+export const schema: DocumentNode = mergeTypeDefs([
   codeToSchema([authorSchema, bookSchema]),
   codeToSchema([authorQuery]),
   codeToSchema([bookQuery]),

@@ -1,6 +1,6 @@
 import { GraphQLEnumType } from "graphql";
 
-export const genderSchema = new GraphQLEnumType({
+export const genderSchema: GraphQLEnumType = new GraphQLEnumType({
   name: "Gender",
   description: "Enum for Gender",
   values: {

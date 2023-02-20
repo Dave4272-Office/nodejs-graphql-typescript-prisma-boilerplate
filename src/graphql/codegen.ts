@@ -16,7 +16,7 @@ const options: Types.GenerateOptions = {
     "schema-ast": schemaAstPlugin,
   },
 };
-const output = await codegen(options);
+const output: string = await codegen(options);
 fs.writeFile(
   path.join(path.dirname(fileURLToPath(import.meta.url)), options.filename),
   output,

@@ -2,6 +2,7 @@ name: gql-server-demo
 services:
   graphql:
     build: .
+    image: dave4272t/gql-demo
     container_name: gql-demo
     ports:
       - 4000:4000
@@ -13,6 +14,7 @@ services:
     volumes:
       - ./prisma:/usr/app/prisma:ro
       - ./src:/usr/app/src:ro
+      - ./favicon:/favicon:ro
 
 networks:
   default:
